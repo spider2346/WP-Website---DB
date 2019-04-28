@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>Wedgewood Pacific</title>
+<link rel="stylesheet" type="text/css" href="wpstyle.css">
+</head>
+
+<body>
+<section id="top">
+<center><img src="banner.jpg" alt="banner" style="width:1500px;height:300px;" border="2"></center>
+</section>
+<div class="Sale">
+</div>
+<section id="menu">
+<h3> Milestone 2 </h3>
+	<ul>
+		<li><a href="index.html">Home</a></li>
+		<li><a href="Milestone1.html">Milestone 1</a></li>
+		<li><a href="Milestone2.html">Milestone 2</a></li>
+		<li><a href="Milestone3.html">Milestone 3</a></li>
+	</ul>
+</section>
+<section id="main">
+<h4>Milestone 2 Leader:</h4>
+<h3>Overview</h3>
+<p><b>I.T. Policy & Law</b></p>
+<p>Addition of a login system which separates website views based on user privileges; employee and administrator.<br>
+Employee login accesses a view-only table of their employee information.<br>
+Administrator login accesses a 'forms' page where information in the database can be added, edited, deleted, or queried.<br>
+Provides a level of security where only a special group of users can directly edit the database.<br></p>
+<p><b>Information Architecture</b></p>
+<p>Separated and categorized the functions the website performs based on who is accessing the data, what is being queried, and the sensitivity of the type of functions being performed.<br></P>
+<p><b>Role of Information Systems</b></p>
+<p>Implemented the necessary code to allow users to access their information by merely logging in quickly. Provided an intuitive format for administrators to add and edit their employee's information, 
+along with a clean functioning form to query employee information into a simple table on the web page. The business can, therefore, more easily add, edit, and remove employees from their database, speeding up the process.</p>
+<p><b>Nature of Information and Knowledge</b></p>
+<p>Established the necessary table to house the data which makes up an employee and their login information which is used as a baseline for the previous steps.</p>
+<hr>
+<h3>Objectives</h3>
+<p><b>Develop user login</b></p>
+<p> &#8226; Develop login framework</p>
+<p> &#8226; Make Changes to existing HTML, PHP, SQL code</p>
+<p> &#8226; Test and ensure login functions</p>
+<p><b>Establish Database</b></p>
+<p> &#8226; Modify Existing Database</p>
+<p> &#8226; Create new tables for user login</p>
+<p> &#8226; Test tables for functionality</p>
+<p><b>New Forms Pages</b></p>
+<p> &#8226; Create php files to house admin and user login</p>
+<p> &#8226; Create html files for user login</p>
+<p> &#8226; Make changes to html, php, sql code</p>
+<p> &#8226; Create Admin & Report html pages</p>
+<p> &#8226; Modify existing html, php, sql to account for new pages</p>
+<p> &#8226; Test forms for functionality</p>
+<hr>
+<h3>Updates</h3>
+<p><b>Updated HTML Files</b></p>
+<p>Updates were made to pre-existing HTML files to integrate with new HTML/PHP files.</p>
+<p> &#8226; NewEmployee.html</p>
+<p> &#8226; Reports.html</p>
+<p> &#8226; Querydb.html</p>
+<p><b>Updated PHP Files</b></p>
+<p>Updates were made to pre-existing PHP files to integrate with new HTML/PHP files.</p>
+<p> &#8226; assignedprojects.php</p>
+<p> &#8226; changelastname.php</p>
+<p> &#8226; changephone.php</p>
+<p> &#8226; department.php</p>
+<p> &#8226; employee.php</p>
+<p> &#8226; moveemployee.php</p>
+<p> &#8226; newemployee.php</p>
+<p> &#8226; numberofprojects.php</p>
+<p> &#8226; project.php</p>
+<p> &#8226; projectsnotcompleted.php</p>
+<p> &#8226; projectstartend.php</p>
+<p><b>Deleted HTML Files</b></p>
+<p> &#8226; assignment.html</p>
+<p> &#8226; Forms.html</p>
+<p> &#8226; moveemployee.html</p>
+<p> &#8226; Home page.html</p>
+<p> &#8226; changephone.html</p>
+<p> &#8226; changelastname.html</p>
+<hr>
+<h3>Created [PERT Chart]</h3>
+<img src="pertchart.jpg" alt="banner" style="width:1242px;height:636px;" border="2">
+<h3>Updated SQL [Create Tables Script]</h3>
+<div style="height:400px;width:800px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+-- Created by Sebastian Byczkowski<br>
+-- Created 9/12/2017<br><br>
+
+-- Drops and creates tables.<br><br>
+
+-- DROP removes tables and data from the WP Database.<br>
+-- Will only drop tables if they actually exist; hence the IF EXIST clause.<br><br>
+
+-- CREATE will create the necessary tables for the WP Database.<br>
+-- Script will create Department, Employee, Project and Assignment tables along<br>
+-- with all the necessary constraints.<br><br>
+
+-- Last Mod: 03/31/2019<br><br>
+
+DROP TABLE IF EXISTS ASSIGNMENT;<br>
+DROP TABLE IF EXISTS EMPLOYEE;<br>
+DROP TABLE IF EXISTS PROJECT;<br>
+DROP TABLE IF EXISTS DEPARTMENT;<br><br>
+
+COMMIT;<br><br>
+
+CREATE TABLE DEPARTMENT (<br>
+                DepartmentName CHAR(35) NOT NULL,<br>
+                BudgetCode CHAR(30) NOT NULL,<br>
+                OfficeNumber CHAR(15) NOT NULL,<br>
+                DepartmentPhone CHAR(12) NOT NULL,<br>
+                CONSTRAINT Department_PK PRIMARY KEY (DepartmentName)<br>
+);<br><br>
+
+
+CREATE TABLE Employee (<br>
+                EmployeeNumber INT AUTO_INCREMENT NOT NULL,<br>
+                FirstName CHAR(25) NOT NULL,<br>
+                LastName CHAR(25) NOT NULL,<br>
+                Department CHAR(35) NOT NULL DEFAULT "Human Resources",<br>
+                Position CHAR(35),<br>
+                Supervisor CHAR(35),<br>
+                OfficePhone CHAR(12),<br>
+                EmailAddress VARCHAR(100) NOT NULL,<br>
+                Username VARCHAR(15) NOT NULL,<br>
+                Password VARCHAR(15) NOT  NULL,<br>
+                CONSTRAINT Employee_Num_PK PRIMARY KEY (EmployeeNumber)<br>
+);<br><br>
+
+
+CREATE UNIQUE INDEX employee_idx<br>
+ ON Employee<br>
+ ( EmailAddress );<br><br>
+
+CREATE TABLE Project (<br>
+                ProjectID INT NOT NULL,<br>
+                ProjectName CHAR(50) NOT NULL,<br>
+                Department CHAR(35) NOT NULL,<br>
+                MaxHours NUMERIC(8,2) DEFAULT 100 NOT NULL,<br>
+                StartDate DATE,<br>
+                EndDate DATE,<br>
+                CONSTRAINT Project_ID_PK PRIMARY KEY (ProjectID)<br>
+);<br><br>
+
+
+CREATE TABLE Assignment (<br>
+                ProjectID INT NOT NULL,<br>
+                EmployeeNumber INT NOT NULL,<br>
+                HoursWorked NUMERIC(6,2),<br>
+                CONSTRAINT Assignment_PK PRIMARY KEY (ProjectID, EmployeeNumber)<br>
+);<br><br>
+
+
+ALTER TABLE Project ADD CONSTRAINT department_project_fk<br>
+FOREIGN KEY (Department)<br>
+REFERENCES DEPARTMENT (DepartmentName)<br>
+ON DELETE NO ACTION<br>
+ON UPDATE CASCADE;<br><br>
+
+ALTER TABLE Employee ADD UNIQUE(Username);<br><br>
+
+ALTER TABLE Employee ADD CONSTRAINT department_employee_fk<br>
+FOREIGN KEY (Department)<br>
+REFERENCES DEPARTMENT (DepartmentName)<br>
+ON DELETE NO ACTION<br>
+ON UPDATE CASCADE;<br><br>
+
+ALTER TABLE Employee ADD CONSTRAINT employee_employee_fk<br>
+FOREIGN KEY (Supervisor)<br>
+REFERENCES Employee (EmployeeNumber)<br>
+ON DELETE NO ACTION<br>
+ON UPDATE NO ACTION;<br><br>
+
+ALTER TABLE Assignment ADD CONSTRAINT employee_assignment_fk<br>
+FOREIGN KEY (EmployeeNumber)<br>
+REFERENCES Employee (EmployeeNumber)<br>
+ON DELETE NO ACTION<br>
+ON UPDATE NO ACTION;<br><br>
+
+ALTER TABLE Assignment ADD CONSTRAINT project_assignment_fk<br>
+FOREIGN KEY (ProjectID)<br>
+REFERENCES Project (ProjectID)<br>
+ON DELETE CASCADE<br>
+ON UPDATE NO ACTION;<br>
+</div>
+<br>
+<br>
+<h3>Updated SQL [Load Data Script]</h3>
+<div style="height:400px;width:1100px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+/********************************************************************************/<br>
+Brandon, Sebastian, Cody
+<br>
+Wedgewood Pacific (WP) Insert Data
+<br>
+/********************************************************************************/<br><br>
+
+
+/*****   DEPARTMENT DATA   ******************************************************/<br><br>
+
+INSERT INTO DEPARTMENT VALUES('Administration', 'BC-100-10', 'BLDG01-210', '360-285-8100');<br>
+INSERT INTO DEPARTMENT VALUES('Legal', 'BC-200-10', 'BLDG01-220', '360-285-8200');<br>
+INSERT INTO DEPARTMENT VALUES('Human Resources', 'BC-300-10', 'BLDG01-230', '360-285-8300');<br>
+INSERT INTO DEPARTMENT VALUES('Finance', 'BC-400-10', 'BLDG01-110', '360-285-8400');<br>
+INSERT INTO DEPARTMENT VALUES('Accounting', 'BC-500-10', 'BLDG01-120', '360-285-8405');<br>
+INSERT INTO DEPARTMENT VALUES('Sales and Marketing', 'BC-600-10', 'BLDG01-250', '360-287-8500');<br>
+INSERT INTO DEPARTMENT VALUES('InfoSystems', 'BC-700-10', 'BLDG02-210', '360-287-8600');<br>
+INSERT INTO DEPARTMENT VALUES('Research and Development', 'BC-800-10', 'BLDG02-250', '360-287-8700');<br>
+INSERT INTO DEPARTMENT VALUES('Production', 'BC-900-10', 'BLDG02-110', '360-287-8800');<br><br>
+
+COMMIT;<br><br>
+
+/*****   EMPLOYEE DATA   ********************************************************/<br><br>
+
+INSERT INTO EMPLOYEE (FirstName, LastName, Department, Position, Supervisor, OfficePhone, EmailAddress,username,password)<br>
+	VALUES('Mary', 'Jacobs', 'Administration', 'El Presidente', 'Arthur Blank', '360-285-8110', 'Mary.Jacobs@WP.com', 'maryj1', 'mary');<br>
+INSERT INTO EMPLOYEE (FirstName, LastName, Department, Position, Supervisor, OfficePhone, EmailAddress,username,password)<br>
+	VALUES('Rosalie', 'Jackson', 'Administration', 'Admin Assistant', 'Dick Wolf', '360-285-8120', 'Rosalie.Jackson@WP.com', 'rosaliej1', 'rosalie');<br>
+INSERT INTO EMPLOYEE (FirstName, LastName, Department, Position, Supervisor, OfficePhone, EmailAddress,username,password)<br>
+	VALUES('Richard', 'Bandalone', 'Legal', 'Attorney', 'Chads Deans', '360-285-8210', 'Richard.Bandalone@WP.com', 'richardb1', 'richard');<br>
+INSERT INTO EMPLOYEE (FirstName, LastName, Department, Position, Supervisor, OfficePhone, EmailAddress,username,password)<br>
+	VALUES('George', 'Smith', 'Human Resources', 'HR Rep', 'Larry Bird', '360-285-8310', 'George.Smith@WP.com', 'georges1', 'george');<br>
+INSERT INTO EMPLOYEE (FirstName, LastName, Department, Position, Supervisor, OfficePhone, EmailAddress,username,password)<br>
+	VALUES('Alan', 'Adams', 'Research and Development', 'Developer', 'Jerry Jones', '360-285-8320', 'Alan.Adams@WP.com', 'alana1', 'alan');<br>
+INSERT INTO EMPLOYEE (FirstName, LastName, Department, Position, Supervisor, OfficePhone, EmailAddress,username,password)<br>
+	VALUES('Ken', 'Evans', 'Finance', 'Chief Finanical Officer', 'Donald the Ronald', '360-285-8410', 'Ken.Evans@WP.com', 'kene1', 'ken');<br>
+INSERT INTO EMPLOYEE (FirstName, LastName, Department, Position, Supervisor, OfficePhone, EmailAddress,username,password)<br>
+	VALUES('Mary', 'Abernathy', 'Finance', 'Financial Officer', 'Billy The Hood', '360-285-8420', 'Mary.Abernathy@WP.com', 'marya1', 'marya');<br>
+INSERT INTO EMPLOYEE (FirstName, LastName, Department, Position, Supervisor, OfficePhone, EmailAddress,username,password)<br>
+	VALUES('Tom', 'Caruthers', 'Accounting', 'Database Admin', 'Homer Simpson', '360-285-8430', 'Tom.Caruthers@WP.com', 'tomc1', 'tom');<br>
+INSERT INTO EMPLOYEE (FirstName, LastName, Department, Position, Supervisor, OfficePhone, EmailAddress,username,password)<br>
+	VALUES('Heather', 'Jones', 'Sales and Marketing', 'Project Manager', 'Tom Brady', '360-285-8440', 'Heather.Jones@WP.com', 'heatherj1', 'heather');<br>
+INSERT INTO EMPLOYEE (FirstName, LastName, Department, Position, Supervisor, OfficePhone, EmailAddress,username,password)<br>
+	VALUES('SuperAdmin', 'SuperAdmin', 'InfoSystems', 'Admin', 'Robert Kraft', '360-285-8440', 'admin@WP.com', 'admin', 'password');<br><br>
+
+
+COMMIT;<br><br>
+
+/*****   PROJECT DATA   *********************************************************/<br><br>
+
+INSERT INTO PROJECT VALUES(1000,
+	'2017 Q3 Production Plan', 'InfoSystems', 100.00, '2017-05-10', '2017-06-15');<br>
+INSERT INTO PROJECT VALUES(1100,
+	'2017 Q3 Marketing Plan', 'Sales and Marketing', 135.00, '2017-05-10', '2017-06-15');<br>
+INSERT INTO PROJECT VALUES(1200,
+	'2017 Q3 Portfolio Analysis', 'Finance', 120.00, '2017-07-05', '2017-07-25');<br>
+INSERT INTO PROJECT VALUES(1300,
+	'2017 Q3 Tax Preparation', 'Accounting', 145.00, '2017-08-10', '2017-10-15');<br>
+INSERT INTO PROJECT VALUES(1400,
+	'2017 Q4 Production Plan', 'Production', 100.00, '2017-08-10', '2017-09-15');<br>
+INSERT INTO PROJECT VALUES(1500,
+	'2017 Q4 Marketing Plan', 'Sales and Marketing', 135.00, '2017-08-10', '2017-09-15');<br>
+INSERT INTO PROJECT
+	VALUES(1600,										
+	'2017 Q4 Portfolio Analysis', 'Finance', 140.00, '2017-10-05', '2017-12-05');	<br>
+INSERT INTO PROJECT VALUES(1700,
+	'2017 Q3 Data Analysis', 'Production', 110.00, '2017-05-10', '2017-06-15');<br>
+INSERT INTO PROJECT VALUES(1800,
+	'2017 Q3 QA Testing', 'Human Resources', 135.00, '2017-05-10', '2017-06-15');<br>
+INSERT INTO PROJECT VALUES(1900,
+	'2018 Q2 Framework Analysis', 'InfoSystems', 450.00, '2018-03-28', NULL);<br>
+INSERT INTO PROJECT VALUES(2000,
+	'2017 Q3 Develop Software', 'Research and Development', 600.00, '2017-07-04', NULL);<br>
+INSERT INTO PROJECT VALUES(2100,
+	'2017 Q2 Develop Database', 'Research and Development', 600.00, '2017-05-10', NULL);<br>
+INSERT INTO PROJECT VALUES(2200,
+	'2018 Q1 Enhance User Interface', 'Legal', 345.00, '2018-01-20', NULL);<br>
+INSERT INTO PROJECT VALUES(2300,
+	'2019 Q1 Research New Technologies', 'Research and Development', 145.00, '2019-02-11', NULL);<br><br>
+    
+
+COMMIT;	<br><br>	
+
+/*****   ASSIGNMENT DATA   ******************************************************/<br><br>
+
+INSERT INTO ASSIGNMENT VALUES(1000, 1, 30.0);<br>
+INSERT INTO ASSIGNMENT VALUES(2200, 2, 50.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1000, 3, 50.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1000, 4, 75.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1700, 5, 75.0);<br>
+INSERT INTO ASSIGNMENT VALUES(2000, 6, 30.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1100, 7, 75.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1100, 8, 55.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1800, 9, 55.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1200, 11, 20.0);<br>
+INSERT INTO ASSIGNMENT VALUES(2300, 12, 40.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1200, 13, 45.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1900, 14, 45.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1300, 1, 25.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1300, 2, 40.0);<br>
+INSERT INTO ASSIGNMENT VALUES(2000, 12, 50.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1300, 4, 50.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1400, 5, 30.0);<br>
+INSERT INTO ASSIGNMENT VALUES(2100, 6, 50.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1400, 7, 50.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1400, 8, 75.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1400, 9, 75.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1500, 11, 30.0);<br>
+INSERT INTO ASSIGNMENT VALUES(2100, 1, 75.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1500, 2, 55.0);<br>
+INSERT INTO ASSIGNMENT VALUES(2000, 3, 55.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1800, 4, 20.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1600, 5, 40.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1700, 6, 68.0);<br>
+INSERT INTO ASSIGNMENT VALUES(1600, 7, 38.0);<br>
+INSERT INTO ASSIGNMENT VALUES(2300, 8, 49.0);<br>
+INSERT INTO ASSIGNMENT VALUES(2100, 9, 81.0);<br><br>
+
+COMMIT;
+</div>
+<br>
+<br>
+<h3>New CSS [Stylesheet]</h3>
+<div style="height:400px;width:1100px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+
+body {<br>
+background-color: #E6E6FA;<br>
+	}<br><br>
+	
+ul {<br>
+    list-style-type: none;<br>
+    margin: 0;<br>
+    padding: 0;<br>
+    width: 200px;<br>
+    background-color: #f1f1f1;<br>
+	}<br><br>
+
+li a {<br>
+    display: block;<br>
+    color: #000;<br>
+    padding: 8px 16px;<br>
+    text-decoration: none;<br>
+	}<br><br>
+
+li a:hover {<br>
+    background-color: #555;<br>
+    color: white;<br>
+	}<br><br>
+	
+section#menu {<br>
+	float: left;<br>
+	width: 15%;<br>
+	height: 800px;<br>
+	}<br><br>
+	
+section#main {<br>
+	float: left;<br>
+	width: 75%;<br>
+	height:800px;<br>
+	}<br><br>
+	
+section#footer {<br>
+	position:fixed;<br>
+	bottom:0;<br>
+	width:50%<br>
+	height:20px;<br>
+	}<br><br>
+
+.Sale {<br>
+ height: 50px;<br>
+ overflow: hidden;<br>
+ position: relative;<br>
+	}<br><br>
+ 
+.Sale h3 {<br>
+ position: absolute;<br>
+ width: 100%;<br>
+ height: 100%;<br>
+ margin: 0;<br>
+ line-height: 50px;<br>
+ text-align: left;<br><br>
+ 
+-moz-animation: Sale 5s linear infinite alternate;<br>
+-webkit-animation: Sale 5s linear infinite alternate;<br>
+-animation: Sale 5s linear infinite alternate;<br>
+	}<br><br>
+	
+@-moz-keyframes Sale {<br>
+ 0%   { -moz-transform: translateX(70%); }<br>
+ 100% { -moz-transform: translateX(0%); }<br>
+	}<br><br>
+	
+@-webkit-keyframes Sale {<br>
+ 0%   { -webkit-transform: translateX(70%); }<br>
+ 100% { -webkit-transform: translateX(0%); }<br>
+	}<br><br>
+	
+@keyframes Sale {<br>
+ 0%   { <br>
+ -moz-transform: translateX(70%);<br>
+ -webkit-transform: translateX(70%);<br>
+ transform: translateX(70%); <br>		
+	}<br><br>
+ 
+ 100% { <br>
+ -moz-transform: translateX(0%);<br>
+ -webkit-transform: translateX(0%);<br>
+ transform: translateX(0%); <br>
+	}<br>
+}<br>
+</div>
+<br>
+<br>
+<h3>New HTML Page [Admin]</h3>
+<div style="height:400px;width:1100px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+&lt;meta charset=&quot;utf-8&quot;&gt; <br>
+&lt;title&gt;Wedgewood Pacific&lt;/title&gt;<br>
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;wpstyle.css&quot;&gt;<br>
+&lt;/head&gt;<br><br>
+
+&lt;body&gt;<br>
+&lt;section id=&quot;top&quot;&gt;<br>
+&lt;center&gt;&lt;img src=&quot;banner.jpg&quot; alt=&quot;banner&quot; style=&quot;width:1500px;height:300px;&quot; border=&quot;2&quot;&gt;&lt;/center&gt;<br>
+&lt;/section&gt;<br>
+&lt;section id=&quot;menu&quot;&gt;<br>
+&lt;h3&gt; Administrator &lt;/h3&gt;<br>
+	&lt;ul&gt;<br>
+		&lt;li&gt;&lt;b&gt;Menu&lt;/b&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;newemployee.html&quot;&gt;&amp;nbsp &amp;nbsp Add Employee&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;changelastnm.php&quot;&gt;&amp;nbsp &amp;nbsp Update Last Name&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;changeph.php&quot;&gt;&amp;nbsp &amp;nbsp Update Phone Number&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;moveemp.php&quot;&gt;&amp;nbsp &amp;nbsp Transfer Employee&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;querydb.html&quot;&gt;&amp;nbsp &amp;nbsp Query DB&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;Reports.html&quot;&gt;Reports&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;wphome.html&quot;&gt;Logout&lt;/a&gt;&lt;/li&gt;<br>
+	&lt;/ul&gt;<br>
+&lt;/section&gt;<br>
+&lt;section id=&quot;footer&quot;&gt;<br>
+&lt;footer&gt;<br>
+&lt;center&gt;&copy; 2019 - Wedgewood Pacific&lt;/center<br>
+&lt;/footer&gt;<br>
+&lt;/section&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</div>
+<br>
+<br>
+<br>
+<h3>New PHP File [Login]</h3>
+<div style="height:400px;width:1100px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+&lt;meta charset=&quot;utf-8&quot;&gt; <br>
+&lt;title&gt;Wedgewood Pacific&lt;/title&gt;<br>
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;wpstyle.css&quot;&gt;<br>
+&lt;/head&gt;<br><br>
+
+&lt;body&gt;<br>
+&lt;section id=&quot;top&quot;&gt;<br>
+&lt;center&gt;&lt;img src=&quot;banner.jpg&quot; alt=&quot;banner&quot; style=&quot;width:1500px;height:300px;&quot; border=&quot;2&quot;&gt;&lt;/center&gt;<br>
+&lt;/section&gt;<br>
+&lt;section id=&quot;menu&quot;&gt;<br>
+&lt;h3&gt; Menu &lt;/h3&gt;<br>
+	&lt;ul&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;login.html&quot;&gt;Back&lt;/a&gt;&lt;/li&gt;<br>
+	&lt;/ul&gt;<br>
+&lt;/section&gt;<br>
+&lt;body&gt;<br>
+&lt;?php<br><br>
+
+$servername = &quot;localhost&quot;;<br>
+$dbname = &quot;wp&quot;;<br>
+$username = &quot;root&quot;;<br>
+$password = &quot;&quot;;<br><br>
+
+try {<br>
+    $pdo = new PDO(&quot;mysql:host=$servername;dbname=$dbname&quot;, $username, $password);<br>
+    // set the PDO error mode to exception<br>
+    $pdo-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);<br>
+    }<br>
+catch(PDOException $e)<br>
+    {<br>
+    echo &quot;Connection failed: &quot; . $e-&gt;getMessage();<br>
+    }<br><br>
+
+	if (isset($_POST['login'])) {<br>
+        # Publish-button was clicked<br><br>
+
+	$username = $_POST['username'];<br>
+	$password = $_POST['password'];<br><br>
+	
+	$count = &quot;SELECT count(Username), count(Password) from employee where Username = ? and Password = ?&quot;;<br><br>
+	
+	$stmt = $pdo-&gt;prepare($count);<br><br>
+	
+	$stmt-&gt;execute([$username, $password]);<br><br>
+	
+	$result = $stmt-&gt;fetchColumn();<br><br>
+
+	if ($result == 1)<br><br>
+	{
+		$count = &quot;SELECT FirstName, LastName, Department, Position, Supervisor, OfficePhone, EmailAddress, Username, Password from employee where username = ?&quot;;<br><br>
+	
+		$stmt = $pdo-&gt;prepare($count);<br><br>
+	
+		$stmt-&gt;execute([$username]);	<br>	
+	}<br>
+		else<br>
+	{<br>
+		header('location: wrong_login.html');<br>
+		die;<br>
+	}   <br>
+		<br>
+	}<br>
+    elseif (isset($_POST['admin'])) {<br><br>
+		
+	$username = $_POST['username'];<br>
+	$password = $_POST['password'];<br>
+	$sauser = &quot;admin&quot;;<br><br>
+	
+	$count = &quot;SELECT count(Username), count(Password) from employee where Username = ? and Password = ?&quot;;<br><br>
+	
+	$stmt = $pdo-&gt;prepare($count);<br><br>
+	
+	$stmt-&gt;execute([$username, $password]);<br><br>
+	
+	$result = $stmt-&gt;fetchColumn();<br><br>
+		
+	if ($result == 1 AND $username == $sauser)<br>
+	{<br>
+		header('location: admin.html');<br>
+		die;<br>
+	}<br>
+		else<br>
+	{<br>
+		header('location: wrong_login.html');<br>
+		die;<br>
+	}<br>
+    }<br>
+?&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;h3&gt;Employee Information&lt;/h3&gt;<br>
+&lt;div style=&quot;height:350px;width:1200px;font:14px/24px Georgia, Garamond, Serif;overflow:auto;&quot;&gt;<br>
+        &lt;table border=&quot;1&quot;&gt;<br>
+        &lt;thead&gt;<br>
+            &lt;tr&gt;<br>
+                &lt;th&gt;&lt;center&gt;First Name&lt;/center&gt;&lt;/th&gt;<br>
+                &lt;th&gt;&lt;center&gt;Last Name&lt;/center&gt;&lt;/th&gt;<br>
+				&lt;th&gt;&lt;center&gt;Department&lt;/center&gt;&lt;/th&gt;<br>
+				&lt;th&gt;&lt;center&gt;Position&lt;/center&gt;&lt;/th&gt;<br>
+                &lt;th&gt;&lt;center&gt;Supervisor&lt;/center&gt;&lt;/th&gt;<br>
+				&lt;th&gt;&lt;center&gt;Office Phone&lt;/center&gt;&lt;/th&gt;<br>
+				&lt;th&gt;&lt;center&gt;Email&lt;/center&gt;&lt;/th&gt;<br>
+				&lt;th&gt;&lt;center&gt;Username&lt;/center&gt;&lt;/th&gt;<br>
+				&lt;th&gt;&lt;center&gt;Password&lt;/center&gt;&lt;/th&gt;<br>
+            &lt;/tr&gt;<br>
+        &lt;/thead&gt;<br>
+		&lt;tbody&gt;<br><br>
+        
+				&lt;?php foreach($stmt as $row) : ?&gt;<br>
+		        &lt;tr&gt;<br>
+                    &lt;td&gt;&lt;center&gt;&lt;?php echo $row['FirstName']; ?&gt;&lt;/center&gt;&lt;/td&gt;<br>
+                    &lt;td&gt;&lt;center&gt;&lt;?php echo $row['LastName']; ?&gt;&lt;/center&gt;&lt;/td&gt;<br>
+                    &lt;td&gt;&lt;center&gt;&lt;?php echo $row['Department']; ?&gt;&lt;/center&gt;&lt;/td&gt;<br>
+					&lt;td&gt;&lt;center&gt;&lt;?php echo $row['Position']; ?&gt;&lt;/center&gt;&lt;/td&gt;<br>
+                    &lt;td&gt;&lt;center&gt;&lt;?php echo $row['Supervisor']; ?&gt;&lt;/center&gt;&lt;/td&gt;<br>
+                    &lt;td&gt;&lt;center&gt;&lt;?php echo $row['OfficePhone']; ?&gt;&lt;/center&gt;&lt;/td&gt;<br>
+                    &lt;td&gt;&lt;center&gt;&lt;?php echo $row['EmailAddress']; ?&gt;&lt;/center&gt;&lt;/td&gt;<br>
+					&lt;td&gt;&lt;center&gt;&lt;?php echo $row['Username']; ?&gt;&lt;/center&gt;&lt;/td&gt;<br>
+					&lt;td&gt;&lt;center&gt;&lt;?php echo $row['Password']; ?&gt;&lt;/center&gt;&lt;/td&gt;<br>
+                &lt;/tr&gt;<br>
+				&lt;?php endforeach;?&gt;<br><br>
+
+		&lt;/table&gt;<br><br>
+				
+           &lt;/tbody&gt; <br><br>
+	&lt;/body&gt;<br>
+	&lt;/div&gt;<br>
+	&lt;section id=&quot;main&quot;&gt;<br>
+&lt;/section&gt;<br>
+&lt;section id=&quot;footer&quot;&gt;<br>
+&lt;footer&gt;<br>
+&lt;center&gt;&copy; 2019 - Wedgewood Pacific&lt;/center<br>
+&lt;/footer&gt;<br>
+&lt;/section&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</div>
+<br>
+<br>
+<h3>New PHP File [Update Last Name]</h3>
+<div style="height:400px;width:1100px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+&lt;meta charset=&quot;utf-8&quot;&gt; <br>
+&lt;title&gt;Wedgewood Pacific&lt;/title&gt;<br>
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;wpstyle.css&quot;&gt;<br>
+&lt;/head&gt;<br><br>
+
+&lt;body&gt;<br>
+&lt;section id=&quot;top&quot;&gt;<br>
+&lt;center&gt;&lt;img src=&quot;banner.jpg&quot; alt=&quot;banner&quot; style=&quot;width:1500px;height:300px;&quot; border =&quot;2&quot;&gt;&lt;/center&gt;<br>
+&lt;/section&gt;<br>
+&lt;section id=&quot;menu&quot;&gt;<br>
+&lt;h3&gt; Administrator &lt;/h3&gt;<br>
+	&lt;ul&gt;<br>
+		&lt;li&gt;&lt;b&gt;Menu&lt;/b&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;newemployee.html&quot;&gt;&amp;nbsp &amp;nbsp Add Employee&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;changelastnm.php&quot;&gt;&amp;nbsp &amp;nbsp Update Last Name&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;changeph.php&quot;&gt;&amp;nbsp &amp;nbsp Update Phone Number&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;moveemp.php&quot;&gt;&amp;nbsp &amp;nbsp Transfer Employee&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;querydb.html&quot;&gt;&amp;nbsp &amp;nbsp Query DB&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;Reports.html&quot;&gt;Reports&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;wphome.html&quot;&gt;Logout&lt;/a&gt;&lt;/li&gt;<br>
+	&lt;/ul&gt;<br>
+&lt;/section&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;section id=&quot;main&quot;&gt;<br>
+&lt;h3&gt;Current Employees&lt;/h3&gt;<br>
+         &lt;table border=&quot;1&quot;&gt;<br>
+        &lt;thead&gt;<br>
+            &lt;tr&gt;<br>
+                &lt;td&gt;&lt;center&gt;Emp#&lt;td&gt;&lt;/b&gt;&lt;/center&gt;<br>
+                &lt;td&gt;&lt;center&gt;First Name&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Last Name&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Department&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Position&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Supervisor&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Office Phone&lt;td&gt;&lt;/center&gt;<br><br>
+				
+            &lt;/tr&gt;<br>
+        &lt;/thead&gt;<br>
+        &lt;tbody&gt;<br>
+        &lt;?php<br>
+			$servername = &quot;localhost&quot;;<br>
+			$username = &quot;root&quot;;<br>
+			$password = &quot;&quot;;<br>
+			$dbname = &quot;wp&quot;;<br>
+			$conn = new mysqli($servername, $username, $password, $dbname);<br>
+            if (!$conn) {<br>
+                die(mysql_error());<br>
+            }<br>
+            $results = $conn-&gt;query(&quot;select employeenumber, firstname, lastname, department, position, supervisor, officephone from employee where not employeenumber ='10'&quot;);<br>
+            while($row = $results-&gt;fetch_assoc()) {<br>
+            ?&gt;<br>
+                &lt;tr&gt;<br>
+					&lt;td&gt;&lt;center&gt;&lt;?php echo $row['employeenumber']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+                    &lt;td&gt;&lt;center&gt;&lt;?php echo $row['firstname']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+                    &lt;td&gt;&lt;center&gt;&lt;?php echo $row['lastname']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+					&lt;td&gt;&lt;center&gt;&lt;?php echo $row['department']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+					&lt;td&gt;&lt;center&gt;&lt;?php echo $row['position']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+                    &lt;td&gt;&lt;center&gt;&lt;?php echo $row['supervisor']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+					&lt;td&gt;&lt;center&gt;&lt;?php echo $row['officephone']?&gt;&lt;td&gt;&lt;/center&gt;<br><br>
+					
+                &lt;/tr&gt;<br><br>
+
+            &lt;?php<br>
+            }<br>
+            ?&gt;<br>
+            &lt;/tbody&gt;<br>
+            &lt;/table&gt;<br>
+&lt;h4&gt;Update Last Name&lt;/h4&gt;<br>
+&lt;form method=&quot;post&quot; action=&quot;changelastname.php&quot;&gt;<br>
+&lt;!-- &lt;p&gt;First Name:  &amp;nbsp&amp;nbsp&amp;nbsp &amp;nbsp&amp;nbsp&lt;input type=&quot;text&quot; name=&quot;firstname&quot;/&gt;&lt;/p&gt; --&gt;<br>
+&lt;p&gt;Employee Number:   &amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&lt;input type=&quot;text&quot; name=&quot;employeenumber&quot; required pattern= &quot;[0-9]+&quot; title=&quot;Please enter a digit. 0-9&quot; size=&quot;4&quot; maxlength=&quot;4&quot;/&gt;&lt;/p&gt;<br>
+&lt;p&gt;New Last Name:   &amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&lt;input type=&quot;text&quot; required pattern<br>
+=&quot;[a-z A-Z-]+&quot; title=&quot;A-Z, Space, or - Only&quot; name=&quot;newlastname&quot;/&gt;&lt;/p&gt;<br>
+  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;<br>
+&lt;/form&gt; <br>
+&lt;/section&gt;<br>
+&lt;section id=&quot;footer&quot;&gt;<br>
+&lt;footer&gt;<br>
+&lt;center&gt;&copy; 2019 - Wedgewood Pacific&lt;/center<br>
+&lt;/footer&gt;<br>
+&lt;/section&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</div>
+<br>
+<br>
+<h3>New PHP File [Update Phone Number]</h3>
+<div style="height:400px;width:1100px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+&lt;meta charset=&quot;utf-8&quot;&gt; <br>
+&lt;title&gt;Wedgewood Pacific&lt;/title&gt;<br>
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;wpstyle.css&quot;&gt;<br>
+&lt;/head&gt;<br><br>
+
+&lt;body&gt;<br>
+&lt;section id=&quot;top&quot;&gt;<br>
+&lt;center&gt;&lt;img src=&quot;banner.jpg&quot; alt=&quot;banner&quot; style=&quot;width:1500px;height:300px;&quot; border =&quot;2&quot;&gt;&lt;/center&gt;<br>
+&lt;/section&gt;<br>
+&lt;section id=&quot;menu&quot;&gt;<br>
+&lt;h3&gt; Administrator &lt;/h3&gt;<br>
+	&lt;ul&gt;<br>
+		&lt;li&gt;&lt;b&gt;Menu&lt;/b&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;newemployee.html&quot;&gt;&amp;nbsp &amp;nbsp Add Employee&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;changelastnm.php&quot;&gt;&amp;nbsp &amp;nbsp Update Last Name&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;changeph.php&quot;&gt;&amp;nbsp &amp;nbsp Update Phone Number&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;moveemp.php&quot;&gt;&amp;nbsp &amp;nbsp Transfer Employee&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;querydb.html&quot;&gt;&amp;nbsp &amp;nbsp Query DB&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;Reports.html&quot;&gt;Reports&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;wphome.html&quot;&gt;Logout&lt;/a&gt;&lt;/li&gt;<br>
+	&lt;/ul&gt;<br>
+&lt;/section&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;section id=&quot;main&quot;&gt;<br>
+&lt;h3&gt;Current Employees&lt;/h3&gt;<br>
+         &lt;table border=&quot;1&quot;&gt;<br>
+        &lt;thead&gt;<br>
+            &lt;tr&gt;<br>
+                &lt;td&gt;&lt;center&gt;Emp#&lt;td&gt;&lt;/b&gt;&lt;/center&gt;<br>
+                &lt;td&gt;&lt;center&gt;First Name&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Last Name&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Department&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Position&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Supervisor&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Office Phone&lt;td&gt;&lt;/center&gt;<br><br>
+				
+            &lt;/tr&gt;<br>
+        &lt;/thead&gt;<br>
+        &lt;tbody&gt;<br>
+        &lt;?php<br>
+			$servername = &quot;localhost&quot;;<br>
+			$username = &quot;root&quot;;<br>
+			$password = &quot;&quot;;<br>
+			$dbname = &quot;wp&quot;;<br>
+			$conn = new mysqli($servername, $username, $password, $dbname);<br>
+            if (!$conn) {<br>
+                die(mysql_error());<br>
+            }<br>
+            $results = $conn-&gt;query(&quot;"select employeenumber, firstname, lastname, department, officephone from employee where not employeenumber ='10'"&quot;);<br>
+            while($row = $results-&gt;fetch_assoc()) {<br>
+            ?&gt;<br>
+                &lt;tr&gt;<br>
+					&lt;td&gt;&lt;center&gt;&lt;?php echo $row['employeenumber']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+                    &lt;td&gt;&lt;center&gt;&lt;?php echo $row['firstname']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+                    &lt;td&gt;&lt;center&gt;&lt;?php echo $row['lastname']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+					&lt;td&gt;&lt;center&gt;&lt;?php echo $row['department']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+					&lt;td&gt;&lt;center&gt;&lt;?php echo $row['officephone']?&gt;&lt;td&gt;&lt;/center&gt;<br><br>
+					
+                &lt;/tr&gt;<br><br>
+
+            &lt;?php<br>
+            }<br>
+            ?&gt;<br>
+            &lt;/tbody&gt;<br>
+            &lt;/table&gt;<br>
+&lt;h4&gt;Update Office Phone Number&lt;/h4&gt;<br>
+&lt;form method=&quot;post&quot; action=&quot;changelastname.php&quot;&gt;<br>
+&lt;!-- &lt;p&gt;First Name:  &amp;nbsp&amp;nbsp&amp;nbsp &amp;nbsp&amp;nbsp&lt;input type=&quot;text&quot; name=&quot;firstname&quot;/&gt;&lt;/p&gt; --&gt;<br>
+&lt;p&gt;Employee Number:   &amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&lt;input type=&quot;text&quot; name=&quot;employeenumber&quot; required pattern= &quot;[0-9]+&quot; title=&quot;Please enter a digit. 0-9&quot; size=&quot;4&quot; maxlength=&quot;4&quot;/&gt;&lt;/p&gt;<br>
+&lt;p&gt;New Last Name:   &amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&lt;input type=&quot;text&quot; required pattern<br>
+=&quot;[a-z A-Z-]+&quot; title=&quot;A-Z, Space, or - Only&quot; name=&quot;newlastname&quot;/&gt;&lt;/p&gt;<br>
+  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;<br>
+&lt;/form&gt; <br>
+&lt;/section&gt;<br>
+&lt;section id=&quot;footer&quot;&gt;<br>
+&lt;footer&gt;<br>
+&lt;center&gt;&copy; 2019 - Wedgewood Pacific&lt;/center<br>
+&lt;/footer&gt;<br>
+&lt;/section&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</div>
+<br>
+<br>
+<h3>New PHP File [Transfer Employee]</h3>
+<div style="height:400px;width:1100px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+&lt;meta charset=&quot;utf-8&quot;&gt; <br>
+&lt;title&gt;Wedgewood Pacific&lt;/title&gt;<br>
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;wpstyle.css&quot;&gt;<br>
+&lt;/head&gt;<br><br>
+
+&lt;body&gt;<br>
+&lt;section id=&quot;top&quot;&gt;<br>
+&lt;center&gt;&lt;img src=&quot;banner.jpg&quot; alt=&quot;banner&quot; style=&quot;width:1500px;height:300px;&quot; border =&quot;2&quot;&gt;&lt;/center&gt;<br>
+&lt;/section&gt;<br>
+&lt;section id=&quot;menu&quot;&gt;<br>
+&lt;h3&gt; Administrator &lt;/h3&gt;<br>
+	&lt;ul&gt;<br>
+		&lt;li&gt;&lt;b&gt;Menu&lt;/b&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;newemployee.html&quot;&gt;&amp;nbsp &amp;nbsp Add Employee&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;changelastnm.php&quot;&gt;&amp;nbsp &amp;nbsp Update Last Name&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;changeph.php&quot;&gt;&amp;nbsp &amp;nbsp Update Phone Number&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;moveemp.php&quot;&gt;&amp;nbsp &amp;nbsp Transfer Employee&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;querydb.html&quot;&gt;&amp;nbsp &amp;nbsp Query DB&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;Reports.html&quot;&gt;Reports&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;wphome.html&quot;&gt;Logout&lt;/a&gt;&lt;/li&gt;<br>
+	&lt;/ul&gt;<br>
+&lt;/section&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;section id=&quot;main&quot;&gt;<br>
+&lt;h3&gt;Current Employees&lt;/h3&gt;<br>
+         &lt;table border=&quot;1&quot;&gt;<br>
+        &lt;thead&gt;<br>
+            &lt;tr&gt;<br>
+                &lt;td&gt;&lt;center&gt;Emp#&lt;td&gt;&lt;/b&gt;&lt;/center&gt;<br>
+                &lt;td&gt;&lt;center&gt;First Name&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Last Name&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Department&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Position&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Supervisor&lt;td&gt;&lt;/center&gt;<br>
+				&lt;td&gt;&lt;center&gt;Office Phone&lt;td&gt;&lt;/center&gt;<br><br>
+				
+            &lt;/tr&gt;<br>
+        &lt;/thead&gt;<br>
+        &lt;tbody&gt;<br>
+        &lt;?php<br>
+			$servername = &quot;localhost&quot;;<br>
+			$username = &quot;root&quot;;<br>
+			$password = &quot;&quot;;<br>
+			$dbname = &quot;wp&quot;;<br>
+			$conn = new mysqli($servername, $username, $password, $dbname);<br>
+            if (!$conn) {<br>
+                die(mysql_error());<br>
+            }<br>
+            $results = $conn-&gt;query(&quot;"select employeenumber, firstname, lastname, department, officephone from employee where not employeenumber ='10'"&quot;);<br>
+            while($row = $results-&gt;fetch_assoc()) {<br>
+            ?&gt;<br>
+                &lt;tr&gt;<br>
+					&lt;td&gt;&lt;center&gt;&lt;?php echo $row['employeenumber']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+                    &lt;td&gt;&lt;center&gt;&lt;?php echo $row['firstname']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+                    &lt;td&gt;&lt;center&gt;&lt;?php echo $row['lastname']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+					&lt;td&gt;&lt;center&gt;&lt;?php echo $row['department']?&gt;&lt;td&gt;&lt;/center&gt;<br>
+					
+                &lt;/tr&gt;<br><br>
+
+            &lt;?php<br>
+            }<br>
+            ?&gt;<br>
+            &lt;/tbody&gt;<br>
+            &lt;/table&gt;<br>
+&lt;h4&gt;Transfer Employee&lt;/h4&gt;<br>
+&lt;form method=&quot;post&quot; action=&quot;changelastname.php&quot;&gt;<br>
+&lt;!-- &lt;p&gt;First Name:  &amp;nbsp&amp;nbsp&amp;nbsp &amp;nbsp&amp;nbsp&lt;input type=&quot;text&quot; name=&quot;firstname&quot;/&gt;&lt;/p&gt; --&gt;<br>
+&lt;p&gt;Employee Number:   &amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&lt;input type=&quot;text&quot; name=&quot;employeenumber&quot; required pattern= &quot;[0-9]+&quot; title=&quot;Please enter a digit. 0-9&quot; size=&quot;4&quot; maxlength=&quot;4&quot;/&gt;&lt;/p&gt;<br>
+&lt;p&gt;New Last Name:   &amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&amp;nbsp&lt;input type=&quot;text&quot; required pattern<br>
+=&quot;[a-z A-Z-]+&quot; title=&quot;A-Z, Space, or - Only&quot; name=&quot;newlastname&quot;/&gt;&lt;/p&gt;<br>
+  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;&gt;<br>
+&lt;/form&gt; <br>
+&lt;/section&gt;<br>
+&lt;section id=&quot;footer&quot;&gt;<br>
+&lt;footer&gt;<br>
+&lt;center&gt;&copy; 2019 - Wedgewood Pacific&lt;/center<br>
+&lt;/footer&gt;<br>
+&lt;/section&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</div>
+<br>
+<br>
+<h3>New HTML Page [Incorrect Login]</h3>
+<div style="height:400px;width:1100px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+&lt;meta charset=&quot;utf-8&quot;&gt; <br>
+&lt;title&gt;Wedgewood Pacific&lt;/title&gt;<br>
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;wpstyle.css&quot;&gt;<br>
+&lt;/head&gt;<br><br>
+
+&lt;body&gt;<br>
+&lt;section id=&quot;top&quot;&gt;<br>
+&lt;center&gt;&lt;img src=&quot;banner.jpg&quot; alt=&quot;banner&quot; style=&quot;width:1500px;height:300px;&quot; border=&quot;2&quot;&gt;&lt;/center&gt;<br>
+&lt;/section&gt;<br>
+&lt;section id=&quot;menu&quot;&gt;<br>
+&lt;h3&gt; Menu &lt;/h3&gt;<br>
+	&lt;ul&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;wphome.html&quot;&gt;Back&lt;/a&gt;&lt;/li&gt;<br>
+		&lt;li&gt;&lt;a href=&quot;login.html&quot;&gt;Login&lt;/a&gt;&lt;/li&gt;<br>
+	&lt;/ul&gt;<br>
+&lt;/section&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;h3&gt;Enter Login Info&lt;/h3&gt;<br>
+ &lt;body&gt;	<br>
+		&lt;form action=&quot;login.php&quot; method=&quot;POST&quot;&gt;<br>
+			Username:&lt;br&gt;<br>
+		&lt;input type=&quot;text&quot; required name=&quot;username&quot; placeholder=&quot;Username&quot;&gt;&lt;br&gt;<br>
+			Password:&lt;br&gt;<br>
+		&lt;input type=&quot;password&quot; required name=&quot;password&quot; placeholder=&quot;Password&quot;&gt;&lt;br&gt;<br>
+		&lt;br&gt;<br>
+		&lt;input type=&quot;submit&quot; name=&quot;login&quot; value=&quot;User Login&quot;&gt;<br>
+		&lt;input type=&quot;submit&quot; name=&quot;admin&quot; value=&quot;Admin Login&quot;&gt;<br>
+	&lt;/form&gt;<br>
+			&lt;p style=&quot;color:red;&quot;&gt;Username or password does match our records!&lt;/p&gt;<br>
+	&lt;/body&gt;<br>
+&lt;section id=&quot;main&quot;&gt;<br>
+&lt;/section&gt;<br>
+&lt;section id=&quot;footer&quot;&gt;<br>
+&lt;footer&gt;<br>
+&lt;center&gt;&copy; 2019 - Wedgewood Pacific&lt;/center<br>
+&lt;/footer&gt;<br>
+&lt;/section&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</div>
+<br>
+<br>
+<h3>New HTML Page [WP Homepage]</h3>
+<div style="height:400px;width:1100px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+&lt;meta charset=&quot;utf-8&quot;&gt; <br>
+&lt;title&gt;Wedgewood Pacific&lt;/title&gt;<br>
+&lt;style&gt;<br>
+body {<br>
+background-color: #E6E6FA;<br>
+}<br>
+section#footer {<br>
+	position:fixed;<br>
+	bottom:0;<br>
+	width:100%<br>
+	height:20px;<br>
+}<br>
+&lt;/style&gt;<br>
+&lt;/head&gt;<br><br>
+
+&lt;body&gt;<br>
+&lt;section id=&quot;top&quot;&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;br&gt;<br>
+&lt;center&gt;&lt;img src=&quot;banner.jpg&quot; alt=&quot;banner&quot; style=&quot;width:1500px;height:300px;&quot; border = &quot;2&quot;&gt;&lt;/center&gt;<br>
+&lt;/section&gt;<br>
+&lt;br&gt;<br>
+&lt;center&gt;&lt;form&gt;<br>
+  &lt;button formaction=&quot;login.html&quot;&gt;Enter&lt;/button&gt;<br>
+&lt;/form&gt;<br>
+&lt;/body&gt;<br>
+&lt;section id=&quot;footer&quot;&gt;<br>
+&lt;footer&gt;<br>
+&lt;center&gt;&copy; 2019 - Wedgewood Pacific&lt;/center<br>
+&lt;/footer&gt;<br>
+&lt;/section&gt;<br>
+&lt;/html&gt;<br>
+</div>
+<br>
+<br>
+</body>
+</html>

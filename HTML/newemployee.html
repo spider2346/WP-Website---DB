@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>Wedgewood Pacific</title>
+<link rel="stylesheet" type="text/css" href="wpstyle.css">
+</head>
+
+<body>
+<section id="top">
+<center><img src="banner.jpg" alt="banner" style="width:1500px;height:300px;" border ="2"></center>
+<section id="menu">
+<h3> Administrator </h3>
+	<ul>
+		<li><b>Menu</b></li>
+		<li><a href="newemployee.html">&nbsp &nbsp Add Employee</a></li>
+		<li><a href="changelastnm.php">&nbsp &nbsp Update Last Name</a></li>
+		<li><a href="changeph.php">&nbsp &nbsp Update Phone Number</a></li>
+		<li><a href="moveemp.php">&nbsp &nbsp Transfer Employee</a></li>
+		<li><a href="querydb.html">&nbsp &nbsp Query DB</a></li>
+		<li><a href="Reports.html">Reports</a></li>
+		<li><a href="wphome.html">Logout</a></li>
+	</ul>
+</section>
+<section id="main">
+<br>
+<br>
+<h3>Add New Employee</h3>
+<form action="newemployee.php" method="post">
+<p>First Name:  &nbsp&nbsp&nbsp &nbsp&nbsp <input type="text" required pattern
+="[a-z A-Z-]+" title="A-Z, Space, or - Only" name="firstname" placeholder="First Name"/></p>
+<p>Last Name:   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" required pattern
+="[a-z A-Z-]+" title="A-Z, Space, or - Only" name="lastname" placeholder="Last Name"/></p>
+<p>Department:    &nbsp&nbsp&nbsp&nbsp&nbsp <select name="department" required>
+	<option></option>
+	<option value="Accounting">Accounting</option>
+    <option value="Administration">Administration</option>
+	<option value="Finance">Finance</option>
+	<option value="Human Resources">Human Resources</option>
+	<option value="InfoSystems">Infomation System</option>
+    <option value="Legal">Legal</option>
+	<option value="Production">Production</option>
+	<option value="Research and Development">Research and Development</option>
+	<option value="Sales and Marketing">Sales and Marketing</option>
+ </select></p>
+<p>Position:    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <select name="position" required>
+	<option></option>
+	<option value="Admin">Admin</option>
+	<option value="Admin Assistant">Admin Assistant</option>
+	<option value="Attorney">Attorney</option>
+	<option value="Chief Finanical Officer">Chief Finanical Officer</option>
+	<option value="Database Admin">Database Admin</option>
+	<option value="Developer">Developer</option>
+	<option value="El Presidente">El Presidente</option>
+	<option value="Financial Officer">Financial Officer</option>
+    <option value="HR Rep">HR Rep</option>
+    <option value="Intern">Intern</option>
+ </select>
+<p>Supervisor:     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <select name="supervisor" required>
+	<option></option>
+    <option value="Arthur Blank">Arthur Blank</option>
+	<option value="Billy The Hood">Billy The Hood</option>
+	<option value="Chads Deans">Chads Deans</option>
+    <option value="Dick Wolf">Dick Wolf</option>
+	<option value="Donald the Ronald">Donald the Ronald</option>
+	<option value="Homer Simpson">Homer Simpson</option>
+	<option value="Jerry Jones">Jerry Jones</option>
+    <option value="Larry Bird">Larry Bird</option>
+	<option value="Tom Brady">Tom Brady</option>
+  </select>
+<p>Office Phone:  &nbsp&nbsp <input type="tel" pattern="(?:\(\d{3}\)|\d{3})[- ]?\d{3}[- ]?\d{4}" name="officephone" title="123-456-7890" placeholder="Ex. 123-456-7890"/></p>
+<p>Email Address: <input type="email" name="emailaddress" required placeholder="newemployee@WP.com"/></p>
+<p>Username: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="text" name="username" required placeholder="Username"/></p>
+<p>Password: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type="password" name="password" required placeholder="Password"/></p>
+
+<input type="submit" value="Submit">
+</form> 
+</section>
+<section id="footer">
+<footer>
+<center>© 2019 - Wedgewood Pacific</center
+</footer>
+</section>
+
+</body>
+
+
+</html>
